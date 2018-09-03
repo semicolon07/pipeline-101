@@ -35,7 +35,7 @@ def deploy(){
     def fParams = " -F \"message=Staring deploy to Heroku...\""
     notifyLINE(fParams)
 
-    bat 'git checkout master'
+    git branch: 'master', url:  'https://github.com/semicolon07/pipeline-101.git'
     bat 'git push heroku master'
     //bat 'heroku ps:scale web=1'
     //def url = bat(returnStdout: true, script: 'heroku apps:info -s  | grep web_url | cut -d= -f2')
