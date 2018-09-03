@@ -2,8 +2,9 @@
 
 pipeline {
     agent any
+
     environment {
-        LINE_NOTIFY_ACCESS_TOKEN = env.LINE_NOTIFY_ACCESS_TOKEN
+        LINE_NOTIFY_ACCESS_TOKEN = "${env.LINE_NOTIFY_ACCESS_TOKEN}"
     }
 
     stages {
