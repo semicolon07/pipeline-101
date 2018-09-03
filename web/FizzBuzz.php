@@ -5,6 +5,9 @@ class FizzBuzz {
 		if($numberTo < 0){
 			throw new InvalidArgumentException();
 		}
+		if($numberTo > 1000){
+			throw new InvalidArgumentException();
+		}
 
 		$sayWord = $numberTo;
 		if($this->divideByThree($numberTo)){

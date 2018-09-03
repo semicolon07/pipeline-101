@@ -20,7 +20,7 @@ pipeline {
         }
         stage('deploy'){
             steps{
-                echo 'deploy'
+                deploy()
             }
         }
     }
@@ -32,7 +32,14 @@ pipeline {
 }
 
 def deploy(){
+    def fParams = " -F \"message=Staring deploy to Heroku...\""
+    notifyLINE(fParams)
+
     bat 'git push heroku master'
+
+    def url = bat('heroku apps:info -s  | grep web_url | cut -d= -f2')
+    fParams = " -F \"message=Success deploy to Heroku URL => ${url} \""
+    notifyLINE(fParams)
 }
 
 def runUnitTest(){
