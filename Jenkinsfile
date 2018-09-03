@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        lineApi = "https://notify-api.line.me/api/notify"
+    }
 
     stages {
         stage ('Compile Stage') {
@@ -24,9 +27,7 @@ pipeline {
         }
         stage ('Notify'){
             steps {
-                def apiUrl = "https://notify-api.line.me/api/notify"
-                stdout = bat(returnStdout: true, script: "curl -X POST -H \"Authorization: Bearer ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk\" -F 'message=helloworld' ${apiUrl}").trim()
-                println("stdout ################ " + stdout + " ####################")
+                bat(returnStdout: true, script: "curl -X POST -H \"Authorization: Bearer ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk\" -F 'message=helloworld' ${lineApi}").trim()
             }
         }
     }
