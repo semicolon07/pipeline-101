@@ -4,10 +4,14 @@ pipeline {
 
     stages {
         stage ('Compile Stage') {
-            bat 'composer install'
+            steps {
+                bat 'composer install'
+            }
         }
         stage("phpunit") {
-            bat 'vendor/bin/phpunit'
+            steps {
+                bat 'vendor/bin/phpunit'
+            }
         }
         stage ('Notify'){
             steps {
