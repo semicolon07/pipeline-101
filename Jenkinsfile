@@ -19,6 +19,11 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            junit 'results/phpunit/phpunit.xml'
+        }
+    }
 }
 
 def notifyLINE(token, result) {
