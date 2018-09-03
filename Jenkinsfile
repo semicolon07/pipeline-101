@@ -6,6 +6,7 @@ pipeline {
 
             steps {
                 echo 'Compile Stage'
+
             }
         }
 
@@ -16,10 +17,14 @@ pipeline {
             }
         }
 
-
         stage ('Deployment Stage') {
             steps {
                 echo 'Deployment Stage'
+            }
+        }
+        stage ('Notify'){
+            steps {
+                sh "curl -X POST -H 'Authorization: Bearer ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk' -F 'message=helloworld' https://notify-api.line.me/api/notify"
             }
         }
     }
