@@ -27,7 +27,7 @@ pipeline {
         }
         stage ('Notify'){
             steps {
-                bat "curl -X POST -H \"Authorization: Bearer ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk\" -F 'message=helloworld' ${lineApi}"
+                bat "curl -X POST -H \"Authorization: Bearer ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk\" -F \"message=helloworld\" ${lineApi}"
             }
         }
     }
