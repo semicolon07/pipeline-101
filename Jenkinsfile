@@ -28,6 +28,9 @@ pipeline {
         always {
             junit 'results/phpunit/phpunit.xml'
         }
+        success {
+            notify('Deploy Success');
+        }
     }
 }
 
