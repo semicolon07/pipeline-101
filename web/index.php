@@ -1,2 +1,2 @@
 <?php
-echo '----- ### Hello World, CI/CD Example #### -------';
+echo '<h1>Hello World, CI/CD Example</h1>';
