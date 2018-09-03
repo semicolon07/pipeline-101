@@ -32,6 +32,7 @@ pipeline {
 }
 
 def deploy(){
+    input 'Deploy to staging?'
     def fParams = " -F \"message=Staring deploy to Heroku...\""
     notifyLINE(fParams)
 
