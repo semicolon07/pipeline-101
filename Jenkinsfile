@@ -28,8 +28,7 @@ def notifyLINE(token, result) {
 
     def batCmd = "curl -X POST -H \"Authorization: Bearer ${token}\" -F \"message=${message}\" ${url}"
     if(useSticker == true){
-        batCmd = "curl -X POST -H \"Authorization: Bearer ${token}\" -F \"message=${message}\" 
-        -F \"stickerPackageId=${stickerPackageId}\" -F \"stickerId=${stickerId}\" ${url}"
+        batCmd = "curl -X POST -H \"Authorization: Bearer ${token}\" -F \"message=${message}\" -F \"stickerPackageId=${stickerPackageId}\" -F \"stickerId=${stickerId}\" ${url}"
     }
     
     bat batCmd
