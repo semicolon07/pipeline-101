@@ -38,5 +38,5 @@ def notifyLINE(token, result) {
     //def imageThumbnail = isFailure ? 'FAILED_IMAGE_THUMBNAIL' : ''
     //def imageFullsize = isFailure ? 'FAILED_IMAGE_FULLSIZE' : ''
       
-    bat "curl ${url} -H 'Authorization: Bearer ${token}' -F 'message=${message}'"
+    bat "curl -X POST -H \"Authorization: Bearer ${token}\" -F 'message=${message}' ${url}"
 }
