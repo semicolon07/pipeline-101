@@ -1,12 +1,9 @@
+#!groovy
 pipeline {
     agent any
-    environment {
-        lineApi = "https://notify-api.line.me/api/notify"
-    }
 
     stages {
         stage ('Compile Stage') {
-
             steps {
                 echo 'Compile Stage'
 
@@ -14,7 +11,6 @@ pipeline {
         }
 
         stage ('Testing Stage') {
-
             steps {
                 echo 'Testing Stage'
             }
@@ -23,12 +19,11 @@ pipeline {
         stage ('Deployment Stage') {
             steps {
                 echo 'Deployment Stage'
-                currentBuild.result = 'SUCCESS'
             }
         }
         stage ('Notify'){
             steps {
-                notifyLINE('ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk',currentBuild.result)
+                notifyLINE('ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk','SUCCESS')
                 //bat "curl -X POST -H \"Authorization: Bearer ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk\" -F \"message=helloworld\" ${lineApi}"
             }
         }
