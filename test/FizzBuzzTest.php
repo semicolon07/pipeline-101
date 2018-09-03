@@ -35,7 +35,10 @@ class FizzBuzzTest extends TestCase {
 	function testNegativeShouldBeThrowException() {
 		$this->expectException(InvalidArgumentException::class);
 		$actualResult = $this->fizzBuzz->say(-1);
-		//$this->assertEquals("FizzBuzzz", $actualResult);
+	}
+	function testMorethan1000BeThrowException() {
+		$this->expectException(InvalidArgumentException::class);
+		$actualResult = $this->fizzBuzz->say(1001);
 	}
 }
 ?>
