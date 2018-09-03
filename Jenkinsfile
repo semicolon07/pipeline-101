@@ -40,9 +40,8 @@ def notifyLINE(token, result) {
       
     def url = 'https://notify-api.line.me/api/notify'
     def message = "Build ${env.BRANCH_NAME}, result is ${result}. \n${env.BUILD_URL}"
-    def imageThumbnail = isFailure ? 'FAILED_IMAGE_THUMBNAIL' : ''
-    def imageFullsize = isFailure ? 'FAILED_IMAGE_FULLSIZE' : ''
+    //def imageThumbnail = isFailure ? 'FAILED_IMAGE_THUMBNAIL' : ''
+    //def imageFullsize = isFailure ? 'FAILED_IMAGE_FULLSIZE' : ''
       
-    bat "curl ${url} -H 'Authorization: Bearer ${token}' -F 'message=${message}'   
-    -F 'imageThumbnail=${imageThumbnail}' -F 'imageFullsize=${imageFullsize}'"
+    bat "curl ${url} -H 'Authorization: Bearer ${token}' -F 'message=${message}'"
 }
