@@ -32,9 +32,10 @@ class FizzBuzzTest extends TestCase {
 		$this->assertEquals("FizzBuzz", $actualResult);
 	}
 
-	function testForceFaield() {
-		$actualResult = $this->fizzBuzz->say(15);
-		$this->assertEquals("FizzBuzzz", $actualResult);
+	function testNegativeShouldBeThrowException() {
+		$this->expectException(InvalidArgumentException::class);
+		$actualResult = $this->fizzBuzz->say(-1);
+		//$this->assertEquals("FizzBuzzz", $actualResult);
 	}
 }
 ?>

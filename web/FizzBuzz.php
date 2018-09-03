@@ -2,6 +2,10 @@
 class FizzBuzz {
 	
 	public function say( $numberTo ) {
+		if($numberTo < 0){
+			throw new InvalidArgumentException();
+		}
+
 		$sayWord = $numberTo;
 		if($this->divideByThree($numberTo)){
 			$sayWord = "Fizz";
