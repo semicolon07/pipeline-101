@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     stages {
-        stage ('Compile Stage') {
+        stage ('composer install') {
             steps {
                 bat 'composer install'
             }
