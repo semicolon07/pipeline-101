@@ -18,6 +18,11 @@ pipeline {
                 runUnitTest()
             }
         }
+        stage('deploy'){
+            steps{
+                //deploy()
+            }
+        }
     }
     post {
         always {
@@ -26,22 +31,22 @@ pipeline {
     }
 }
 
+def deploy(){
+    bat 'git push heroku master'
+}
+
 def runUnitTest(){
     try{
         bat 'vendor/bin/phpunit'
-        notifyLINE("${LINE_NOTIFY_ACCESS_TOKEN}",true) 
+        notifyLINE_BuildResult(true) 
     }catch (err) {
         echo 'error :'+err
-        notifyLINE("${LINE_NOTIFY_ACCESS_TOKEN}",false)
+        notifyLINE_BuildResult(false)
         throw err
     }
 }
 
-def notifyLINE(token, result) {
-    //def isFailure = result == 'FAILURE'
-    def useSticker = true
-      
-    def url = 'https://notify-api.line.me/api/notify'
+def notifyLINE_BuildResult(result) {
     def message = "Build Master, result is ${result}. ${env.BUILD_URL}"
     def stickerPackageId = 1
     def stickerId = 14
@@ -50,10 +55,12 @@ def notifyLINE(token, result) {
         stickerId = 100
     }
 
-    def batCmd = "curl -X POST -H \"Authorization: Bearer ${token}\" -F \"message=${message}\" ${url}"
-    if(useSticker == true){
-        batCmd = "curl -X POST -H \"Authorization: Bearer ${token}\" -F \"message=${message}\" -F \"stickerPackageId=${stickerPackageId}\" -F \"stickerId=${stickerId}\" ${url}"
-    }
-    
+    def fParams = " -F \"message=${message}\" -F \"stickerPackageId=${stickerPackageId}\" -F \"stickerId=${stickerId}\" "
+    notifyLINE(fParams)
+}
+
+def notifyLINE(f_params){
+    def url = 'https://notify-api.line.me/api/notify'
+    def batCmd = "curl -X POST -H \"Authorization: Bearer ${LINE_NOTIFY_ACCESS_TOKEN}\" ${f_params} ${url}"
     bat batCmd
 }
