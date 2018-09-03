@@ -1,7 +1,4 @@
 {
-    "require": {
-        "ext-mbstring": "*"
-      },
     "require-dev": {
         "phpunit/phpunit": "^7",
         "heroku/heroku-buildpack-php": "*"
