@@ -11,14 +11,7 @@ pipeline {
         }
         stage("phpunit") {
             steps {
-                try{
-                    bat 'vendor/bin/phpunit'
-                    notifyLINE('ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk',true) 
-                }catch (err) {
-                    echo 'error :'+err
-                    notifyLINE('ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk',false)
-                    throw err
-                }
+                runUnitTest()
             }
         }
     }
@@ -26,6 +19,17 @@ pipeline {
         always {
             junit 'results/phpunit/phpunit.xml'
         }
+    }
+}
+
+def runUnitTest(){
+    try{
+        bat 'vendor/bin/phpunit'
+        notifyLINE('ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk',true) 
+    }catch (err) {
+        echo 'error :'+err
+        notifyLINE('ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk',false)
+        throw err
     }
 }
 
