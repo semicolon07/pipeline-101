@@ -3,16 +3,24 @@ pipeline {
 
     stages {
         stage ('Compile Stage') {
-            echo 'Compile stage'
+
+            steps {
+                echo 'Compile Stage'
+            }
         }
 
         stage ('Testing Stage') {
-            echo 'Testing stage'
+
+            steps {
+                echo 'Testing Stage'
+            }
         }
 
 
         stage ('Deployment Stage') {
-            echo 'Deployment stage'
+            steps {
+                echo 'Deployment Stage'
+            }
         }
     }
 }
