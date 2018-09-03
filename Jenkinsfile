@@ -37,9 +37,9 @@ def deploy(){
 
     bat 'git checkout master'
     bat 'git push heroku master'
-    bat 'heroku ps:scale web=1'
-    def url = bat(returnStdout: true, script: 'heroku apps:info -s  | grep web_url | cut -d= -f2')
-
+    //bat 'heroku ps:scale web=1'
+    //def url = bat(returnStdout: true, script: 'heroku apps:info -s  | grep web_url | cut -d= -f2')
+    def url = "http://google.co.th"
     fParams = " -F \"message=Success deploy to Heroku URL => ${url} \""
     notifyLINE(fParams)
 }
