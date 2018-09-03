@@ -11,13 +11,14 @@ pipeline {
         }
         stage("phpunit") {
             steps {
-                bat 'vendor/bin/phpunit'
-            }
-        }
-        
-        stage ('Notify'){
-            steps {
-                notifyLINE('ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk','SUCCESS')
+                try{
+                    bat 'vendor/bin/phpunit'
+                    notifyLINE('ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk',true) 
+                }catch (err) {
+                    echo 'error :'+err
+                    notifyLINE('ttPnrcjWXfANDVNYyMTccxG81J5UYxvNuwyDjXJATGk',false)
+                    throw err
+                }
             }
         }
     }
@@ -37,9 +38,9 @@ def notifyLINE(token, result) {
     def stickerPackageId = 1
     def stickerId = 1
 
-    /*if (result == false){
+    if (result == false){
         stickerId = 100
-    }*/
+    }
 
     def batCmd = "curl -X POST -H \"Authorization: Bearer ${token}\" -F \"message=${message}\" ${url}"
     if(useSticker == true){
